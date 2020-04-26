@@ -1,2 +1,2 @@
 # ecommerce-products
-Aplicación para un catalogo de productos
+Backend de la aplicación para un catálogo de productos
