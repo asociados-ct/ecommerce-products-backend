@@ -19,7 +19,6 @@ public class User {
     @Column(name = "password", length = 40)
     private String password;
 
-
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "profile_id", nullable = false)
     private Profile profile;
