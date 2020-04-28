@@ -1,17 +1,16 @@
 package com.asociadosct.ecommerceproducts.service;
 
 import com.asociadosct.ecommerceproducts.entity.Profile;
-import com.asociadosct.ecommerceproducts.repository.ProfileRepository;
+import com.asociadosct.ecommerceproducts.repository.IProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
 public class ProfileServiceImpl implements  IProfileService {
 
     @Autowired
-    ProfileRepository profileRepository;
+    IProfileRepository profileRepository;
 
     public List<Profile> getAll(){
         return profileRepository.findAll();
