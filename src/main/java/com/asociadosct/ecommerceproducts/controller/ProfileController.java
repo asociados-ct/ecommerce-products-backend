@@ -24,6 +24,6 @@ public class ProfileController {
     @PostMapping(path = "/")
     public ResponseEntity<String> create(@RequestBody Profile profile) {
         profileService.create(profile);
-        return new ResponseEntity("Se crea el perfil correctamente", HttpStatus.CREATED);
+        return new ResponseEntity("Se crea el perfil correctamente.", HttpStatus.CREATED);
     }
 }
