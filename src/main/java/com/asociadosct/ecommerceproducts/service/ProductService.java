@@ -1,6 +1,5 @@
 package com.asociadosct.ecommerceproducts.service;
 
-import com.asociadosct.ecommerceproducts.entity.Category;
 import com.asociadosct.ecommerceproducts.entity.Product;
 import com.asociadosct.ecommerceproducts.exception.ResourceNotFoundException;
 

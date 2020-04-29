@@ -1,6 +1,5 @@
 package com.asociadosct.ecommerceproducts.entity;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,5 +32,4 @@ public class Profile {
 
     @OneToMany(mappedBy = "profile", fetch = FetchType.LAZY)
     private List<UserProfile> userProfiles;
-
 }

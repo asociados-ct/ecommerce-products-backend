@@ -4,13 +4,10 @@ import com.asociadosct.ecommerceproducts.entity.Product;
 import com.asociadosct.ecommerceproducts.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.asociadosct.ecommerceproducts.entity.Product;
-import com.asociadosct.ecommerceproducts.repository.ProductRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-
 
 @Service
 public class ProductServiceImpl implements ProductService {

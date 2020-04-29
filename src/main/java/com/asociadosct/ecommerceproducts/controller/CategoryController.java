@@ -63,6 +63,4 @@ public class CategoryController {
         response.put("deleted", Boolean.TRUE);
         return response;
     }
-
-
 }

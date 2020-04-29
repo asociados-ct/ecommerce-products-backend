@@ -1,6 +1,5 @@
 package com.asociadosct.ecommerceproducts.controller;
 
-import com.asociadosct.ecommerceproducts.entity.Product;
 import com.asociadosct.ecommerceproducts.entity.Profile;
 import com.asociadosct.ecommerceproducts.exception.ResourceNotFoundException;
 import com.asociadosct.ecommerceproducts.service.ProfileService;

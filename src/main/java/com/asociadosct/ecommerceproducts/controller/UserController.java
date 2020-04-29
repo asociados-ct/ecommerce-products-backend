@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.asociadosct.ecommerceproducts.entity.Category;
-import com.asociadosct.ecommerceproducts.entity.Profile;
 import com.asociadosct.ecommerceproducts.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
