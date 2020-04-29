@@ -17,7 +17,7 @@ import com.asociadosct.ecommerceproducts.service.UserService;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/v1/user")
+@RequestMapping("/api/v1/users")
 public class UserController {
 
     @Autowired
