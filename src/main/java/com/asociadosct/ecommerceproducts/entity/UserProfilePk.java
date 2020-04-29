@@ -8,7 +8,9 @@ import java.io.Serializable;
 
 @Data
 @Embeddable
-public class UserProfilePk implements Serializable {
+public class UserProfilePk {
+
+    private static final long serialVersionUID = 1L;
 
     @Column(name = "user_id")
     private Integer userId;

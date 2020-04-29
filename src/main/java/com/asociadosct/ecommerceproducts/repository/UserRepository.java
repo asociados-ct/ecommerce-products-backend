@@ -2,9 +2,9 @@ package com.asociadosct.ecommerceproducts.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.asociadosct.ecommerceproducts.entity.Product;;
+import com.asociadosct.ecommerceproducts.entity.User;
 
 @Repository
-public interface IProductRepository extends JpaRepository<Product, Integer>{
+public interface UserRepository extends JpaRepository<User, Integer>{
 
 }

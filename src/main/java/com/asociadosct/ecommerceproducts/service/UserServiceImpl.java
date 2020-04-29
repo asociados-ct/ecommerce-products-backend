@@ -1,28 +1,46 @@
 package com.asociadosct.ecommerceproducts.service;
 
-import java.util.List;
-
+import com.asociadosct.ecommerceproducts.entity.User;
+import com.asociadosct.ecommerceproducts.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.asociadosct.ecommerceproducts.entity.User;
-import com.asociadosct.ecommerceproducts.repository.IUserRepository;
+import java.util.List;
+import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements IUserService{
+public class UserServiceImpl implements UserService {
 
-	@Autowired
-	IUserRepository userRepository;
-	
-	@Override
-	public List<User> getAll() {
-		return userRepository.findAll();
-	}
+    /**
+     * Inyeccion de dependencias
+     */
+    @Autowired
+    protected UserRepository userRepository;
 
-	@Override
-	public void create(User user) {
-		userRepository.save(user);
-	}
+    @Override
+    @Transactional
+    public User save(User user) {
+        return this.userRepository.save(user);
+    }
 
-	
+    @Override
+    @Transactional(readOnly = true)
+    public List<User> findAll() {
+        return this.userRepository.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void deleteUser(User user) {
+        this.userRepository.delete(user);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<User> getUser(Integer id) {
+        return this.userRepository.findById(id);
+    }
+
+
 }

@@ -1,13 +1,21 @@
 package com.asociadosct.ecommerceproducts.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "user")
-@Data
+@Table(name = "userProfiles")
+@Data // genera todos los getter, setters
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +27,6 @@ public class User {
     @Column(name = "password", length = 40)
     private String password;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "profile_id", nullable = false)
-    private Profile profile;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<UserProfile> userProfiles;
 }

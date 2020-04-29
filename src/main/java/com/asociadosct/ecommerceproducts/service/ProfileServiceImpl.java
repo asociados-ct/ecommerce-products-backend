@@ -1,22 +1,44 @@
 package com.asociadosct.ecommerceproducts.service;
 
 import com.asociadosct.ecommerceproducts.entity.Profile;
-import com.asociadosct.ecommerceproducts.repository.IProfileRepository;
+import com.asociadosct.ecommerceproducts.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class ProfileServiceImpl implements  IProfileService {
+public class ProfileServiceImpl implements ProfileService {
 
+    /**
+     * Inyeccion de dependencias
+     */
     @Autowired
-    IProfileRepository profileRepository;
+    protected ProfileRepository ProfileRepository;
 
-    public List<Profile> getAll(){
-        return profileRepository.findAll();
+    @Override
+    @Transactional
+    public Profile save(Profile profile) {
+        return this.ProfileRepository.save(profile);
     }
 
-    public void create(Profile profile){
-        profileRepository.save(profile);
+    @Override
+    @Transactional(readOnly = true)
+    public List<Profile> findAll() {
+        return this.ProfileRepository.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void deleteProfile(Profile profile) {
+        this.ProfileRepository.delete(profile);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Profile> getProfile(Integer id) {
+        return this.ProfileRepository.findById(id);
     }
 }

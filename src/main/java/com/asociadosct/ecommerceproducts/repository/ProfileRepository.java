@@ -1,10 +1,9 @@
 package com.asociadosct.ecommerceproducts.repository;
 
+import com.asociadosct.ecommerceproducts.entity.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.asociadosct.ecommerceproducts.entity.Category;
 
 @Repository
-public interface ICategoryRepository extends JpaRepository<Category, Integer> {
-
+public interface ProfileRepository extends JpaRepository<Profile, Integer> {
 }
