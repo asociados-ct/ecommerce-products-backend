@@ -1,18 +1,18 @@
 package com.asociadosct.ecommerceproducts.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.asociadosct.ecommerceproducts.entity.User;
 import com.asociadosct.ecommerceproducts.exception.ResourceNotFoundException;
+import com.asociadosct.ecommerceproducts.repository.ProfileRepository;
+import com.asociadosct.ecommerceproducts.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.asociadosct.ecommerceproducts.entity.User;
-import com.asociadosct.ecommerceproducts.service.UserService;
 
 import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -20,6 +20,13 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    ProfileController profileController;
+
+
+    @Autowired
+    private ProfileRepository profileRepository;
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<User> getProfile(@PathVariable(value = "id") Integer id)

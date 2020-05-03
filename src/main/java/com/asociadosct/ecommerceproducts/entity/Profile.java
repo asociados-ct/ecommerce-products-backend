@@ -32,4 +32,6 @@ public class Profile {
 
     @OneToMany(mappedBy = "profile", fetch = FetchType.LAZY)
     private List<UserProfile> userProfiles;
+
+
 }

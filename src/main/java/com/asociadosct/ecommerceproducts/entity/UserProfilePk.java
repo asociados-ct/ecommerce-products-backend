@@ -2,14 +2,13 @@ package com.asociadosct.ecommerceproducts.entity;
 
 import lombok.Data;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 @Data
 @Embeddable
-public class UserProfilePk implements Serializable{
+public class UserProfilePk implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
