@@ -1,6 +1,7 @@
 package com.asociadosct.ecommerceproducts.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonRawValue;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -27,22 +28,8 @@ public class UserProfile implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profile_id", unique = true)
-    //@JsonRawValue
-    //@JsonRootName(value = "profile")
+    @JsonRawValue
     private Profile profile;
-
-    //@EmbeddedId
-    //private UserProfilePk userProfilePk;
-
-   /* @ManyToOne
-    @MapsId("user_id")
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @ManyToOne
-    @MapsId("profile_id")
-    @JoinColumn(name = "profile_id")
-    private Profile profile;*/
 
     @Column(name = "status")
     private boolean status;
