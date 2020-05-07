@@ -1,5 +1,6 @@
 package com.asociadosct.ecommerceproducts.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,6 +32,7 @@ public class User implements Serializable {
     private String password;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<UserProfile> profiles;
 
 }

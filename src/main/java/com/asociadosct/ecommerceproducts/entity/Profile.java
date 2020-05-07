@@ -1,5 +1,6 @@
 package com.asociadosct.ecommerceproducts.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,6 +32,7 @@ public class Profile {
     private String name;
 
     @OneToMany(mappedBy = "profile", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<UserProfile> userProfiles;
 
 
