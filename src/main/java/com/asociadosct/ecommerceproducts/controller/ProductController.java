@@ -13,7 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://ecommerce-products-frontend.herokuapp.com")
 @RestController
 @RequestMapping("/api/v1/products")
 public class ProductController {
