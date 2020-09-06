@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "https://ecommerce-products-frontend.herokuapp.com")
+@CrossOrigin(origins = "https://ecommerce-sct.netlify.app")
 @RestController
 @RequestMapping("/api/v1/products")
 public class ProductController {
