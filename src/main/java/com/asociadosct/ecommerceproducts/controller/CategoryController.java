@@ -18,6 +18,8 @@ import java.util.Map;
 @RequestMapping("/api/v1/categories")
 public class CategoryController {
 
+    private static final String NOT_FOUND_MESSAGE = "No se encuentra la categoría con el ID :: ";
+
     @Autowired
     CategoryService categoryService;
 
@@ -25,7 +27,7 @@ public class CategoryController {
     public ResponseEntity<Category> getCategoryId(@PathVariable(value = "id") Integer id)
             throws ResourceNotFoundException {
         Category category = categoryService.getCategory(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No se encuentra la categoría con el ID :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND_MESSAGE + id));
         return ResponseEntity.ok().body(category);
     }
 
@@ -41,12 +43,11 @@ public class CategoryController {
     }
 
     @PutMapping(value = "/{id}")
-    //@Valid se encarga de revisar si las validaciones de la clase se cumplen
+    // @Valid se encarga de revisar si las validaciones de la clase se cumplen
     public ResponseEntity<Category> updateCategory(@PathVariable(value = "id") Integer categoryId,
-                                                   @Valid @RequestBody Category categoryParam)
-            throws ResourceNotFoundException {
+            @Valid @RequestBody Category categoryParam) throws ResourceNotFoundException {
         Category category = categoryService.getCategory(categoryId)
-                .orElseThrow(() -> new ResourceNotFoundException("No se encuentra la categoría con el ID :: " + categoryId));
+                .orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND_MESSAGE + categoryId));
         category.setName(categoryParam.getName());
 
         final Category updateCategory = categoryService.save(category);
@@ -57,7 +58,7 @@ public class CategoryController {
     public Map<String, Boolean> deleteCategory(@PathVariable(value = "id") Integer id)
             throws ResourceNotFoundException {
         Category category = categoryService.getCategory(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No se encuentra la categoría con el ID :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND_MESSAGE + id));
 
         this.categoryService.deleteCategory(category);
         Map<String, Boolean> response = new HashMap<>();

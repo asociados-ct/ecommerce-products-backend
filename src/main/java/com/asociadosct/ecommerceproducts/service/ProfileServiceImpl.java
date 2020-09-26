@@ -16,29 +16,29 @@ public class ProfileServiceImpl implements ProfileService {
      * Inyeccion de dependencias
      */
     @Autowired
-    protected ProfileRepository ProfileRepository;
+    protected ProfileRepository profileRepository;
 
     @Override
     @Transactional
     public Profile save(Profile profile) {
-        return this.ProfileRepository.save(profile);
+        return this.profileRepository.save(profile);
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<Profile> findAll() {
-        return this.ProfileRepository.findAll();
+        return this.profileRepository.findAll();
     }
 
     @Override
     @Transactional
     public void deleteProfile(Profile profile) {
-        this.ProfileRepository.delete(profile);
+        this.profileRepository.delete(profile);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Optional<Profile> getProfile(Integer id) {
-        return this.ProfileRepository.findById(id);
+        return this.profileRepository.findById(id);
     }
 }
