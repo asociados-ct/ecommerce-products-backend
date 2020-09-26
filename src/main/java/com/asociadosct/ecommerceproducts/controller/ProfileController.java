@@ -18,6 +18,8 @@ import java.util.Map;
 @RequestMapping("/api/v1/profiles")
 public class ProfileController {
 
+    private static final String NOT_FOUND_PROFILE_MESSAGE = "No se encuentra el perfil con el ID :: ";
+
     @Autowired
     ProfileService profileService;
 
@@ -25,7 +27,7 @@ public class ProfileController {
     public ResponseEntity<Profile> getProfile(@PathVariable(value = "id") Integer id)
             throws ResourceNotFoundException {
         Profile profile = profileService.getProfile(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No se encuentra el perfil con el ID :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND_PROFILE_MESSAGE + id));
         return ResponseEntity.ok().body(profile);
     }
 
@@ -46,7 +48,7 @@ public class ProfileController {
                                                  @Valid @RequestBody Profile profileParam)
             throws ResourceNotFoundException {
         Profile profile = profileService.getProfile(profileId)
-                .orElseThrow(() -> new ResourceNotFoundException("No se encuentra el perfil con el ID :: " + profileId));
+                .orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND_PROFILE_MESSAGE + profileId));
         profile.setName(profileParam.getName());
 
         // toca revisar actualización de tabla intermedia
@@ -59,7 +61,7 @@ public class ProfileController {
     public Map<String, Boolean> deleteProfile(@PathVariable(value = "id") Integer id)
             throws ResourceNotFoundException {
         Profile profile = profileService.getProfile(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No se encuentra el perfil con el ID :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND_PROFILE_MESSAGE + id));
 
         this.profileService.deleteProfile(profile);
         Map<String, Boolean> response = new HashMap<>();
