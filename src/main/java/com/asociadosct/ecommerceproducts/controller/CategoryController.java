@@ -13,8 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = {"https://ecommerce-sct.netlify.app","http://localhost:4200"} )
-//@CrossOrigin(origins =  "${var.origins.url:http://localhost:4200}")
+//@CrossOrigin(origins = {"https://ecommerce-sct.netlify.app","http://localhost:4200"} )
+@CrossOrigin(origins =  "${var.origins.url}")
 @RestController
 @RequestMapping("/api/v1/categories")
 public class CategoryController {
