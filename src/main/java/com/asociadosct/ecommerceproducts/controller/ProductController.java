@@ -18,6 +18,9 @@ import java.util.Map;
 @RequestMapping("/api/v1/products")
 public class ProductController {
 
+    private static final String NOT_FOUND_PRODUCT_MESSAGE = "No se encuentra el producto con el ID :: ";
+    private static final String PRODUCT_SUCCESSFUL = "Se crea el producto correctamente.";
+
     @Autowired
     ProductService productService;
 
@@ -26,7 +29,7 @@ public class ProductController {
     public ResponseEntity<Product> getProduct(@PathVariable(value = "id") Integer id)
             throws ResourceNotFoundException {
         Product product = productService.getProduct(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No se encuentra el producto con el ID :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND_PRODUCT_MESSAGE + id));
         return ResponseEntity.ok().body(product);
     }
 
@@ -38,7 +41,7 @@ public class ProductController {
     @PostMapping(path = "/")
     public ResponseEntity<String> createProduct(@Valid @RequestBody Product product) {
         productService.save(product);
-        return new ResponseEntity<>("Se crea el producto correctamente.", HttpStatus.CREATED);
+        return new ResponseEntity<>(PRODUCT_SUCCESSFUL, HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/{id}")
@@ -47,7 +50,7 @@ public class ProductController {
                                                  @Valid @RequestBody Product productParam)
             throws ResourceNotFoundException {
         Product product = productService.getProduct(productId)
-                .orElseThrow(() -> new ResourceNotFoundException("No se encuentra el producto con el ID :: " + productId));
+                .orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND_PRODUCT_MESSAGE + productId));
         product.setName(productParam.getName());
         product.setCategory(productParam.getCategory());
         product.setDescription(productParam.getDescription());
@@ -65,7 +68,7 @@ public class ProductController {
     public Map<String, Boolean> deleteProduct(@PathVariable(value = "id") Integer id)
             throws ResourceNotFoundException {
         Product product = productService.getProduct(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No se encuentra el producto con el ID :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND_PRODUCT_MESSAGE + id));
 
         this.productService.deleteProduct(product);
         Map<String, Boolean> response = new HashMap<>();
