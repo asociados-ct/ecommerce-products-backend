@@ -57,12 +57,6 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(readOnly = true)
     public Optional<User> getUser(Integer id) {
-       /* Optional<UserProfile> ps = userProfileRepository.findById(id);
-
-
-        List<Profile> up = new ArrayList<>();
-        Optional<User> user = this.userRepository.findById(id);
-        user.get().setProfiles(up);*/
         return this.userRepository.findById(id);
     }
 

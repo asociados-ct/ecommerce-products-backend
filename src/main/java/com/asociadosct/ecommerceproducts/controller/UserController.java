@@ -17,7 +17,10 @@ import java.util.Map;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1/users")
-public class UserController {
+public class UserController<T> {
+
+    private static final String NOT_FOUND_USER_MESSAGE = "No se encuentra el usuario con el ID :: ";
+    private static final String USER_SUCCESSFUL = "Se crea el usuario correctamente.";
 
     @Autowired
     UserService userService;
@@ -33,7 +36,7 @@ public class UserController {
     public ResponseEntity<User> getProfile(@PathVariable(value = "id") Integer id)
             throws ResourceNotFoundException {
         User user = userService.getUser(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No se encuentra el usuario con el ID :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND_USER_MESSAGE + id));
         return ResponseEntity.ok().body(user);
     }
 
@@ -43,9 +46,9 @@ public class UserController {
     }
 
     @PostMapping(path = "/")
-    public ResponseEntity<?> createUser(@RequestBody User user) {
+    public ResponseEntity<T> createUser(@RequestBody User user) {
         userService.save(user);
-        return new ResponseEntity<>("Se crea el usuario correctamente.", HttpStatus.CREATED);
+        return new ResponseEntity<T>((T) USER_SUCCESSFUL, HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/{id}")
@@ -54,7 +57,7 @@ public class UserController {
                                            @Valid @RequestBody User userParam)
             throws ResourceNotFoundException {
         User user = userService.getUser(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("No se encuentra el usuario con el ID :: " + userId));
+                .orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND_USER_MESSAGE + userId));
         user.setUsername(userParam.getUsername());
         user.setPassword(user.getPassword());
         // Toca revisar como actualizar la tabla intermedia
@@ -67,7 +70,7 @@ public class UserController {
     public Map<String, Boolean> deleteUser(@PathVariable(value = "id") Integer id)
             throws ResourceNotFoundException {
         User user = userService.getUser(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No se encuentra el usuario con el ID :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(NOT_FOUND_USER_MESSAGE + id));
 
         this.userService.deleteUser(user);
         Map<String, Boolean> response = new HashMap<>();
